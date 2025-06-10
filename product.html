@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bio-Origin Health Store - Product Details</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="themeToggle" aria-label="Toggle theme">🌙</button>
+
+  <header class="header">
+    <div class="logo" onclick="location.href='index.html'">VA Health Store</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main style="max-width: 900px; margin: 2rem auto; padding: 0 1rem;">
+    <a href="products.html" style="text-decoration:none; color:#007bff; font-weight:bold;">← Back to Products</a>
+
+    <section id="productDetail" style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 2rem;">
+      <!-- Product info will be loaded here -->
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 VA Health Store. All rights reserved. 
+    <a href="privacy.html">Privacy Policy</a> | 
+    <a href="terms.html">Terms of Service</a>
+  </footer>
+
+  <script src="data.js"></script>
+  <script>
+    // Theme toggle logic
+    const themeToggleBtn = document.getElementById('themeToggle');
+    function setTheme(theme) {
+      if(theme === 'dark') {
+        document.body.classList.add('dark');
+        themeToggleBtn.textContent = '☀️';
+      } else {
+        document.body.classList.remove('dark');
+        themeToggleBtn.textContent = '🌙';
+      }
+      localStorage.setItem('theme', theme);
+    }
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.body.classList.contains('dark') ? 'dark' : 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    // Helper: get query param 'id'
+    function getQueryParam(param) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(param);
+    }
+
+    const productDetailSection = document.getElementById('productDetail');
+    const productId = getQueryParam('id');
+
+    function showProductDetails(product) {
+      if (!product) {
+        productDetailSection.innerHTML = '<p style="font-size:1.2rem; color:#c00;">Product not found.</p>';
+        return;
+      }
+
+      productDetailSection.innerHTML = `
+        <img src="${product.image}" alt="${product.name}" style="max-width: 400px; width: 100%; border-radius: 8px; object-fit: contain;" />
+        <div style="flex: 1;">
+          <h1>${product.name}</h1>
+          <p><strong>Category:</strong> ${product.category}</p>
+          <p style="margin: 1rem 0;">${product.description}</p>
+          <p style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;">₹${product.price.toFixed(2)}</p>
+          <button id="addToCartBtn" style="
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+          ">Add to Cart</button>
+          <p id="addedMsg" style="color: green; margin-top: 0.75rem; display: none;">Added to cart!</p>
+        </div>
+      `;
+
+      const addToCartBtn = document.getElementById('addToCartBtn');
+      const addedMsg = document.getElementById('addedMsg');
+
+      addToCartBtn.addEventListener('click', () => {
+        addToCart(product);
+        addedMsg.style.display = 'block';
+        setTimeout(() => addedMsg.style.display = 'none', 2000);
+      });
+    }
+
+    // Cart management using localStorage
+    function addToCart(product) {
+      const cart = JSON.parse(localStorage.getItem('vaHealthCart')) || [];
+      // Check if product already in cart, increment quantity if yes
+      const existingIndex = cart.findIndex(item => item.id === product.id);
+      if(existingIndex >= 0) {
+        cart[existingIndex].quantity += 1;
+      } else {
+        cart.push({...product, quantity: 1});
+      }
+      localStorage.setItem('vaHealthCart', JSON.stringify(cart));
+    }
+
+    // On page load
+    window.onload = () => {
+      if(!productId) {
+        productDetailSection.innerHTML = '<p style="font-size:1.2rem; color:#c00;">Invalid product ID.</p>';
+        return;
+      }
+      const product = products.find(p => p.id === productId);
+      showProductDetails(product);
+    };
+  </script>
+</body>
+</html>

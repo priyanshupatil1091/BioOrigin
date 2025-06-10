@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bio-Origin Health Store - Checkout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo" tabindex="0">Bio-Origin</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link">🛒 Cart</a>
+    </nav>
+    <button id="themeToggle" aria-label="Toggle dark mode">🌓</button>
+  </header>
+
+  <main class="checkout-container">
+    <h1>Checkout</h1>
+    <form id="checkoutForm" novalidate>
+      <fieldset>
+        <legend>Billing Information</legend>
+        <label for="fullName">Full Name*</label>
+        <input type="text" id="fullName" name="fullName" required autocomplete="name" />
+
+        <label for="email">Email*</label>
+        <input type="email" id="email" name="email" required autocomplete="email" />
+
+        <label for="address">Address*</label>
+        <textarea id="address" name="address" required rows="3" autocomplete="street-address"></textarea>
+
+        <label for="phone">Phone Number*</label>
+        <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}" placeholder="10-digit number" />
+      </fieldset>
+
+      <fieldset>
+        <legend>Payment Details</legend>
+        <label for="cardNumber">Card Number*</label>
+        <input type="text" id="cardNumber" name="cardNumber" required pattern="\d{16}" maxlength="16" placeholder="1234 5678 9012 3456" />
+
+        <label for="expiry">Expiry Date*</label>
+        <input type="month" id="expiry" name="expiry" required min="2023-06" />
+
+        <label for="cvv">CVV*</label>
+        <input type="password" id="cvv" name="cvv" required pattern="\d{3}" maxlength="3" placeholder="123" />
+      </fieldset>
+
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+
+    <p id="orderStatus" style="text-align:center; margin-top:1rem; font-weight:bold;"></p>
+  </main>
+
+  <footer>
+    <p>© Bio-OriginHealth Store | Made with 💖 for your health</p>
+  </footer>
+
+  <script src="checkout.js"></script>
+</body>
+</html>

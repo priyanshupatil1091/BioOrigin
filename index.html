@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bio-Origin Health Store - Home</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo" tabindex="0">Bio-Origin</div>
+    <nav>
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link" aria-label="View Cart">🛒 Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+    <button id="themeToggle" aria-label="Toggle dark mode">🌓</button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Your Health, Our Priority</h1>
+      <p>Shop trusted health products and medications with confidence.</p>
+      <a href="#productGrid" class="btn">Shop Now</a>
+    </div>
+    <img src="images/WhatsApp Image 2025-06-09 at 6.11.11 PM.jpeg" alt="Healthy lifestyle illustration" />
+  </section>
+
+  <section class="controls">
+    <input type="text" id="searchBox" placeholder="Search for health products..." aria-label="Search products" />
+    <select id="categoryFilter" aria-label="Filter by category">
+      <option value="all">All Categories</option>
+      <option value="Tablets">Tablets</option>
+      <option value="Injections">Injections</option>
+       <option value="Lotions">Lotions</option>
+       <option value="Syrups">Syrups</option>
+    </select>
+    <select id="priceSort" aria-label="Sort by price">
+      <option value="default">Sort by</option>
+      <option value="low">Price: Low to High</option>
+      <option value="high">Price: High to Low</option>
+    </select>
+  </section>
+
+  <main>
+    <section id="productGrid" class="product-grid" aria-live="polite" aria-label="Product listing">
+      <!-- Products inserted here by JS -->
+    </section>
+  </main>
+
+  <footer>
+    <p>© Bio-Origin Health Store | Made with 💖 for your health</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

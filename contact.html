@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bio-Origin Health Store - Contact Us</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo" tabindex="0">Bio-Origin</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" aria-current="page">Contact</a>
+      <a href="cart.html" class="cart-link">🛒 Cart (<span id="cartCount">0</span>)</a>
+    </nav>
+    <button id="themeToggle" aria-label="Toggle dark mode">🌓</button>
+  </header>
+
+  <main class="contact-container">
+    <h1>Contact Us</h1>
+    <form id="contactForm" novalidate>
+      <label for="name">Your Name*</label>
+      <input type="text" id="name" name="name" required autocomplete="name" />
+
+      <label for="email">Your Email*</label>
+      <input type="email" id="email" name="email" required autocomplete="email" />
+
+      <label for="message">Your Message*</label>
+      <textarea id="message" name="message" required rows="5"></textarea>
+
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+    <p id="formStatus" style="text-align:center; margin-top:1rem; font-weight:bold;"></p>
+  </main>
+
+  <footer>
+    <p>© Bio-Origin Health Store | Made with 💖 for your health</p>
+  </footer>
+
+  <script>
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+      if(contactForm.checkValidity()) {
+        formStatus.textContent = 'Thank you for contacting us! We will get back to you soon.';
+        contactForm.reset();
+      } else {
+        formStatus.textContent = 'Please fill all required fields correctly.';
+      }
+    });
+  </script>
+</body>
+</html>

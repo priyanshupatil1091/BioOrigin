@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bio-Origin Health Store - Cart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo" tabindex="0">Bio-Origin</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-link" aria-current="page">🛒 Cart</a>
+    </nav>
+    <button id="themeToggle" aria-label="Toggle dark mode">🌓</button>
+  </header>
+
+  <main class="cart-container">
+    <h1>Your Cart</h1>
+    <section id="cartItems">
+      <!-- Cart items injected here -->
+    </section>
+    <section id="cartSummary" class="cart-summary">
+      <!-- Summary injected here -->
+    </section>
+    <button id="checkoutBtn" class="btn" disabled>Proceed to Checkout</button>
+    <p id="emptyMsg" style="text-align:center; font-size: 1.2rem; color:#666;"></p>
+  </main>
+
+  <footer>
+    <p>© Bio-Origin Health Store | Made with 💖 for your health</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>
